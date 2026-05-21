@@ -12,7 +12,7 @@ response = JSON.parse(response_serialized)
 puts "Seeding with movies from tmdb..."
 response["results"].each do |movie|
   movie_params = {}
-  movie_params[:title] = movie["original_title"]
+  movie_params[:title] = movie["title"]
   movie_params[:overview] = movie["overview"]
   movie_params[:poster_url] = "https://image.tmdb.org/t/p/w500#{movie["poster_path"]}"
   movie_params[:rating] = movie["vote_average"].to_f

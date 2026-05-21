@@ -1,6 +1,12 @@
 <h1><%= @list.name %></h1>
-<ul>
+
+<div class="cards">
   <% @list.bookmarks.each do |bookmark| %>
-    <li><%= bookmark.movie.title %></li>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= bookmark.movie.poster_url %>)">
+      <%= bookmark.movie.title %>
+      <%= link_to "🗑️", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    </div>
   <% end %>
-</ul>
+</div>
+
+<%= link_to "Add new bookmarmk", new_list_bookmark_path(@list) %>
