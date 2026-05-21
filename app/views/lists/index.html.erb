@@ -1,9 +1,9 @@
 <h1>My Lists</h1>
 
-<ul>
+<div class="cards">
   <% @lists.each do |list| %>
-    <li>
-      <%= link_to list.name, list_path(list) %>
-    </li>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= "http://loremflickr.com/600/200/#{list.name.downcase}" %>)">
+      <%= link_to list.name, list_path(list), class: "text-decoration-none text-white" %>
+    </div>
   <% end %>
-</ul>
+</div>

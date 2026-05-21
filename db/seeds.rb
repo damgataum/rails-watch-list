@@ -20,13 +20,14 @@ response["results"].each do |movie|
 end
 
 puts "Seeding some lists..."
-List.create!(name: "My top faves evaa!")
-List.create!(name: "For that rainy weekend")
+List.create!(name: "Anime")
+List.create!(name: "Classics")
+List.create!(name: "Superheroes")
 
 puts "Seeding some bookmarks..."
-Bookmark.create!(comment: "Def my top pick", movie_id: Movie.first.id, list_id: List.first.id)
-Bookmark.create!(comment: "My second go to", movie_id: Movie.where(title: "The Shawshank Redemption").first.id, list_id: List.where(name: "For that rainy weekend").first.id)
-Bookmark.create!(comment: "Great one", movie_id: Movie.last.id, list_id: List.last.id)
+Bookmark.create!(comment: "Ah! Miyazaki is a genius!", movie_id: Movie.where(title: "Spirited Away").first.id, list_id: List.first.id)
+Bookmark.create!(comment: "THE classic of classics", movie_id: Movie.where(title: "The Shawshank Redemption").first.id, list_id: List.where(name: "Classics").first.id)
+Bookmark.create!(comment: "I'M BATMAN!", movie_id: Movie.where(title: "The Dark Knight").first.id, list_id: List.last.id)
 
 puts "Done!"
 # Movie.create(title: "Wonder Woman 1984", overview: "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s", poster_url: "https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg", rating: 6.9)
