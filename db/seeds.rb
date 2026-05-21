@@ -1,7 +1,8 @@
 require "open-uri"
 require "json"
 
-puts "Cleaning all movies..."
+puts "Cleaning all movies and lists..."
+List.destroy_all
 Movie.destroy_all
 
 url = URI("https://tmdb.lewagon.com/movie/top_rated")
@@ -17,6 +18,15 @@ response["results"].each do |movie|
   movie_params[:rating] = movie["vote_average"].to_f
   Movie.create!(movie_params)
 end
+
+puts "Seeding some lists..."
+List.create!(name: "My top faves evaa!")
+List.create!(name: "For that rainy weekend")
+
+puts "Seeding some bookmarks..."
+Bookmark.create!(comment: "Def my top pick", movie_id: Movie.first.id, list_id: List.first.id)
+Bookmark.create!(comment: "My second go to", movie_id: Movie.where(title: "The Shawshank Redemption").first.id, list_id: List.where(name: "For that rainy weekend").first.id)
+Bookmark.create!(comment: "Great one", movie_id: Movie.last.id, list_id: List.last.id)
 
 puts "Done!"
 # Movie.create(title: "Wonder Woman 1984", overview: "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s", poster_url: "https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg", rating: 6.9)
