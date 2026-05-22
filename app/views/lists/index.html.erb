@@ -1,8 +1,12 @@
-<h1>My Lists</h1>
+<h1 class="h1 m-4">My Lists</h1>
 
-<div class="cards">
+<div class="m-4 cards">
   <% @lists.each do |list| %>
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= "http://loremflickr.com/600/200/#{list.name.downcase}" %>)">
+    <div class="card-category"
+      <% if list.photo.attached? %>
+      style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+      url('<%= cl_image_path list.photo.key, width: 600, height: 200, crop: :fill %>')"
+      <% end %>>
       <%= link_to list.name, list_path(list), class: "text-decoration-none text-white" %>
     </div>
   <% end %>
