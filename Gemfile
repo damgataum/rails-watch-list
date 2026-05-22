@@ -71,3 +71,5 @@ gem "rails-controller-testing", group: [ :test ]
 
 gem "open-uri"
 gem "json"
+gem "dotenv-rails"
+gem "cloudinary"
